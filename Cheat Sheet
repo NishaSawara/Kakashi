@@ -1,0 +1,142 @@
+*******************************************Git Hub Hands On*************************************************************************
+
+--initialize your git local repository----
+-- create a Repository folder in your local dir and right click on it and select git bash.
+
+command 1: git init  // Initialize a local Git repository
+
+-- connect your local repository to your remote repository
+
+command 2: git remote add origin "https://github.com/CognitiveMinds/Repo1.git" // add remote origin to your repository
+
+-- if there is no error then your remote origin is added to your local repository successfully.
+
+-- pull files from you remote repository to your local repository
+
+command 3: git pull origin master // pull repository to local master branch
+
+-- other way we can you clone command to pull all the files from remote to local.
+
+command 4: git clone "https://github.com/CognitiveMinds/Repo1.git"
+
+-- before we push any new code to central repository , all the change files need to adde to index first.
+-- without adding the file to index we can do any operation with with the file.
+
+command 5 : git status //Check status of the local repository and return some untracked files, those files have not been added to index.
+
+command 6: git add cogn12.txt  // add the file to index 
+
+git add -A
+
+command 7: git status // check the status again to confirm there no untracked file left to add to index.
+
+-- commit the change to the local repository first and then to remote repository.
+
+command 8: git commit -m 'make a commit to local repository after change on cogn12.txt' // if there would not be any error git status will return nothing to commit, working tree clean
+
+
+-- add more than one file at at time or a folder with more than one file at time to local repository 
+-- create few files in local repository and a folder with file in local repository.
+-- use command git status to check the untracked folders and files.
+
+-- add all the files and folders to index/ staging aread 
+
+command 9: git add -A   /./ it would add all the files and their corresponding folders to index.
+
+
+-- similar to git add we can use git commit 
+
+command 10: git commit -a -m ' All the new chagges committed to local repo'
+
+
+-- None Linear development with your code..
+
+*******************Branching & Merging*******************************
+
+-- for parallel development we need to create branch
+
+command 11: git branch  Repo11 // git branch Repo11
+
+-- switch to new branch 
+
+command 12: git checkout Repo11  //  
+
+-- create new files in this new branch and then add them into index and commit all the changes
+
+command 13: git add -A // add all the new files in Repo11 
+
+command 14 : git commit -m 'new files added in branch Repo11'
+
+command 15: ls  // list down all the files , and check newly added file is there in the list
+
+-- switch to master branch and check list all the files , you could not find the file created in branch Repo11
+
+command 16: git checkout master
+
+command 17 : ls / it does not return the file which we have created in branch Repo11
+
+
+-- merge the branches to get final set of code for pushing to central repository
+
+command 18 : git merge Repo11 // Merge a branch into the active branch , here target branch is your master branch
+
+-- now switch to Repo11 branch and make some change to the files and commit the change 
+-- change would be reflected only Repo11 since the change is not merge.
+-- use cat command to validate it.
+
+command 19: cat cogn14.tx // it returns will all the changes we have made on this file.
+
+-- switch to master branch 
+
+command 20: git checkout Repo11 
+
+command 21: cat cogn14.txt  // it returns the old file without new text in the file.
+
+-- Rebasing is also use to combine different branches and their files.
+-- it is used to make a linear sequence of commits
+-- it commits all the changes in the tip of the master instead two separate commits in two branches.
+-- rebasing gives much cleaner project history that merging
+-- it reduce number of branches
+
+command 22 : git checkout Repo11 // switch to Repo11
+
+-- create some more files in Repo11 and make some changes to old ones
+-- use cat command to validate the changes 
+-- the new files would be added to the list
+-- now rebase the branch
+
+command 23: git rebase master // this rebasing is done in Repo11
+
+-- checkout to master and validate that the changes were not reflected
+
+-- in the master branch use the rebase command again with Repo11
+
+command 24: git rebase Repo11 // Repo11 would be mergeged with master branch in a sequential fashioned
+
+-- use ls and cat commands to validate the merge
+
+
+-- Push changes to central repository
+-- code pushing to central repository required authorization and access to the repository.
+-- to push code in authority you need to have SSH access
+-- to connect repository through SSH we need to have SSH key.
+-- ssh key can be generated in the git itself with command ssh-keygen
+
+command 25:  ssh-keygen  // enter passphrase if there would any and it would generate an ssh key
+
+-- copy the ssh key use cat my_key.pub // here my_key.pub is the key file.
+
+command 26: cat my_key.pub  // it returns the ssh key. copy the file and paste it in git repository.
+
+-- steps to add the key in repository
+-- go to repository -> settings ->  SSH and GPG keys - > New SSH key
+-- paste the ssh key and click on add SSH key to save the key.
+-- come back to command prompt 
+-- to authenticate the key use below command
+-- ssh -T git@github.com
+
+ command 26A: git push origin Repo11 // it pushed the code to origin and create
+
+sfghjfgerhjer
+
+
